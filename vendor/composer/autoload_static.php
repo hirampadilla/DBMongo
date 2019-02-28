@@ -6,6 +6,10 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitab4167ac2b4a87ff4f25dadd25d43d17
 {
+    public static $files = array (
+        '3a37ebac017bc098e9a86b35401e7a68' => __DIR__ . '/..' . '/mongodb/mongodb/src/functions.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'm' => 
         array (
@@ -18,6 +22,10 @@ class ComposerStaticInitab4167ac2b4a87ff4f25dadd25d43d17
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+        ),
+        'M' => 
+        array (
+            'MongoDB\\' => 8,
         ),
     );
 
@@ -33,6 +41,10 @@ class ComposerStaticInitab4167ac2b4a87ff4f25dadd25d43d17
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'MongoDB\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mongodb/mongodb/src',
         ),
     );
 

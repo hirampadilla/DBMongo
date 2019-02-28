@@ -9,4 +9,5 @@ return array(
     'mikemccabe\\JsonPatch\\' => array($vendorDir . '/mikemccabe/json-patch-php/src'),
     'Symfony\\Component\\EventDispatcher\\' => array($vendorDir . '/symfony/event-dispatcher'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'MongoDB\\' => array($vendorDir . '/mongodb/mongodb/src'),
 );
