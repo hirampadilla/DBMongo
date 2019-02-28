@@ -4,13 +4,19 @@
     class Usuario{
         private $username;
         protected $pass;
+
         private function register($json){
             $con = new Conexion();
             $collectionUsers = $con->getUsuarios();
-            $collectionUsers->insertOne($json);
-
+            try{
+                $collectionUsers->insertOne($json);
+            }catch (\MongoDB\Driver\Exception\Exception $e) {
+                echo $e->getMessage(), "\n <strong>Usuario ya existe</strong>";
+                return false;
+            }
+            return true;
         }
-
+        
         public function setUser($username,$pass){
             $this->username=$username;
             $this->pass=password_hash($pass, PASSWORD_DEFAULT);
@@ -18,10 +24,13 @@
                "username" => ["name"=>$this->username, "unique"=>true],
                "pass" => $this->pass
             ];
-            $this->register($json);
+            return $this->register($json);
         }        
         public function findUser($username){
-
+            $con = new Conexion();
+            $collectionUsers = $con->getUsuarios();
+            $result=$collectionUsers->find($username);
+            return $result;
         }
         public function findUserByID($objectID){
 
