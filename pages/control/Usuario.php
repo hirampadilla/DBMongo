@@ -4,7 +4,6 @@
     class Usuario{
         private $username;
         protected $pass;
-
         private function register($json){
             $con = new Conexion();
             $collectionUsers = $con->getUsuarios();
@@ -39,19 +38,41 @@
 
             return $result;
         }
-        public function update($idJSON,$NewJson){
-            
+
+        public function update($Oldusername,$NewJson){
+            //para que funcione sin restricciones es necesario utilizar un campo unico no se puede
+            //actualizar con referencia al id por alguna razon pero es necesario cambiar con el nombre anterior.
+            //al ser este un campo unico no es dificil hacerlo
+
             $con = new Conexion();
             $collectionUsers = $con->getUsuarios();
-            $olduser= $this->findUserByID($idJSON);
-            echo "<br>";
-            print_r($olduser);
             try {
-                $collectionUsers->updateOne(['_id'=>$olduser],$NewJson);
+
+                $collectionUsers->replaceOne(
+                    ["username.name" => $Oldusername],
+                    [
+                        "username"=>["name"=>$NewJson["name"]],
+                        "pass"=>password_hash($NewJson["pass"],PASSWORD_DEFAULT)
+                    ]                   
+                );  
+       
+                return true;
             } catch (\Throwable $th) {
-                echo $th;
+                return false;
             }
-            return true;
+        }
+        public function destroy($username){
+            $con = new Conexion();
+            $collectionUsers = $con->getUsuarios();
+            try {
+                $collectionUsers->deleteOne([
+                    "username.name"=> $username
+                ]);
+                return true;
+            } catch (\Throwable $th) {
+                //throw $th;
+                return false;
+            }
         }
 
         public function login($username, $pass){
@@ -59,7 +80,6 @@
             $collectionUsers = $con->getUsuarios();
             $result = $collectionUsers->find(["username.name"=>$username]);
             foreach($result as $us){
-                print_r($us);
                 $pass_v=password_verify($pass, $us['pass']);
                 return $pass_v;
             }

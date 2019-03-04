@@ -14,16 +14,16 @@ namespace control;
     foreach($result as $us){
         echo "<br>".$us['username']->name . " ".$us['pass'];
     }
-    if($user->login('dianis','123'))
+    if($user->login('Diana','123'))
         echo "Existe usuario Contraseña Correcta";
     else echo "Contraseña incorrecta";
 
     // prueba update
-    $idusuario = ["_id"=> "5c77fd13246449247c003685"];
-    $newUsuario=[
-        "username.name"=>"Diana",
-        "username.pass"=>"123"
+     $newUsuario=[
+        "name"=>"Diana",
+        "pass"=>"123"
     ];
-    if($user->update("5c77fd13246449247c003685",$newUsuario))
-        echo "<br>Updated";
+    
+    if($user->destroy("Diana"))
+    echo "Eliminado";
 ?>
