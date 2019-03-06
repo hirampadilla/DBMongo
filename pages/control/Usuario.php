@@ -10,7 +10,6 @@
             try{
                 $collectionUsers->insertOne($json);
             }catch (\MongoDB\Driver\Exception\Exception $e) {
-                echo $e->getMessage(), "\n <strong>Usuario ya existe</strong>";
                 return false;
             }
             return true;
