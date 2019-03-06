@@ -67,34 +67,5 @@
     <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
 </body>
- <script> //src="../assets/js/login.js"
-    $(document).ready(()=>{
-        $("#btn-login").click(()=>{
-            var data={
-                user: $("#user").val(),
-                pass: $("#pass").val()
-            }
-            $.ajax({
-                type: "post",
-                url: "../pages/control/login.php",
-                data: data,
-                beforeSend: ()=>{
-                    $('#status').html('<div role="standing"class="alert alert-primary"> Verificando un momento....</div>')},
-                success: function (response) {
-                    $("#status").html(response);
-                },
-            });
-            return false;
-        });
-        
-    });
-    $(document).ajaxComplete(()=>{
-        if($('#result').attr("role")=="success"){
-            alert("success");
-            window.location.href="/index.html";
-        }
-        else
-            alert("not success");
-    });
- </script>
+ <script src="../assets/js/login.js"> </script>
 </html>
