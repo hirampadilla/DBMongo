@@ -15,7 +15,7 @@
             }
             return true;
         }
-        
+
         public function setUser($username,$pass){
             $this->username=$username;
             $this->pass=password_hash($pass, PASSWORD_DEFAULT);
