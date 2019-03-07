@@ -7,6 +7,10 @@ $pass=$_POST['pass'];
 $us_control= new Usuario();
 
 if($us_control->login($user,$pass)){
+    session_start([
+        'cookie_lifetime' => 86400,
+    ]);
+    $_SESSION['username']=$user;
     echo '<div id="result" role="success" class="alert alert-success"> Usuario correcto, espera un momento...</div>';
 }
 else   

@@ -9,7 +9,7 @@ $(document).ready(()=>{
             url: "../pages/control/login.php",
             data: data,
             beforeSend: ()=>{
-                $('#status').html('<div role="standing"class="alert alert-primary"> Verificando un momento....</div>')},
+                $('#status').html('<div role="standing" class="alert alert-primary"> Verificando un momento....</div>')},
             success: function (response) {
                 $("#status").html(response);
             },
@@ -20,9 +20,7 @@ $(document).ready(()=>{
 });
 $(document).ajaxComplete(()=>{
     if($('#result').attr("role")=="success"){
-        alert("success");
-        window.location.href="../index.html";
+        window.location.href="../index.php";
     }
-    else
-        alert("not success");
+        
 });

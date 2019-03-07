@@ -1,3 +1,10 @@
+<?php 
+    session_start();
+    if(isset($_SESSION['username']))
+        echo "";
+    else
+        echo '<script>window.location.href="pages/login.html";</script>';
+?>
 <!doctype html>
 <html lang="en">
  
@@ -43,7 +50,7 @@
                                     <h5 class="mb-0 text-white nav-user-name">Huron Padilla </h5>
                                     <span class="status"></span><span class="ml-2">Disponible</span>
                                 </div>
-                                <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Cerrar sesi&oacute;n</a>
+                                <a class="dropdown-item" href="pages/control/logout.php"><i class="fas fa-power-off mr-2"></i>Cerrar sesi&oacute;n</a>
                             </div>
                         </li>
                     </ul>
@@ -318,6 +325,7 @@
     <script src="assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
     <script src="assets/vendor/charts/c3charts/C3chartjs.js"></script>
     <script src="assets/libs/js/dashboard-ecommerce.js"></script>
+    <script src="assets/js/logout.js"></script>
 </body>
  
 </html>
