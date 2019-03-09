@@ -8,7 +8,6 @@
         private $db;
         private $usuarios;
         private $persona;
-
         // private $collection;
         public function __construct(){
             $this->connection = new \MongoDB\Client("mongodb://localhost:27017");
@@ -22,6 +21,9 @@
         }
         public function getUsuarios(){
             return $this->usuarios;
+        }
+        public function regex($regex){
+            return new \MongoDB\BSON\Regex('^'.$regex, 'i');
         }
         public function getPersonas(){
             return $this->personas;

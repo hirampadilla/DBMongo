@@ -14,16 +14,37 @@
             }
             return true;
         }
-
+        public function getAll(){
+            $con= new Conexion();
+            $collectionUsers=$con->getUsuarios();
+            $result;
+            try {
+                $result=$collectionUsers->find([]);
+            } catch (\Throwable $th) {
+                
+            }
+            if(is_null($result))
+                return "No existen usuarios";
+            else
+                return $result;
+        }
         public function setUser($username,$pass){
             $this->username=$username;
             $this->pass=password_hash($pass, PASSWORD_DEFAULT);
             $json=[
                "username" => ["name"=>$this->username, "unique"=>true],
-               "pass" => $this->pass
+               "pass" => $this->pass ,
+               "privilage"=>false
             ];
             return $this->register($json);
         }        
+        public function findPattern($pattern){
+            $con = new Conexion();
+            $collectionUsers = $con->getUsuarios();
+            $regex = $con->regex($pattern);
+            $result=$collectionUsers->find(["username.name"=>$regex]);
+            return $result;
+        }
         public function findUser($username){
             $con = new Conexion();
             $collectionUsers = $con->getUsuarios();
@@ -33,7 +54,7 @@
         public function findUserByID($ID){
             $con = new Conexion();
             $collectionUsers = $con->getUsuarios();
-            $result = $collectionUsers->find(["_id" => $ID]);
+            $result = $collectionUsers->findOne(["_id" => $ID]);
 
             return $result;
         }
@@ -47,11 +68,12 @@
             $collectionUsers = $con->getUsuarios();
             try {
 
-                $collectionUsers->replaceOne(
+                $collectionUsers->updateOne(
                     ["username.name" => $Oldusername],
                     [
                         "username"=>["name"=>$NewJson["name"]],
-                        "pass"=>password_hash($NewJson["pass"],PASSWORD_DEFAULT)
+                        "pass"=>password_hash($NewJson["pass"],PASSWORD_DEFAULT),
+                        "privilage"=>$NewJson['privilage']
                     ]                   
                 );  
        

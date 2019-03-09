@@ -10,7 +10,10 @@ if($us_control->login($user,$pass)){
     session_start([
         'cookie_lifetime' => 86400,
     ]);
-    $_SESSION['username']=$user;
+    $temp = $us_control->findUser(['username.name'=>$user]);
+    $_SESSION['username']= $temp->username->name;
+    $_SESSION['privilage']=$temp->privilage;
+    
     echo '<div id="result" role="success" class="alert alert-success"> Usuario correcto, espera un momento...</div>';
 }
 else   
