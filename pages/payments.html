@@ -139,28 +139,29 @@
                                         <!-- ============================================================== -->
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                             <div class="card">
+                                                <div id="status"></div>
                                                 <h5 class="card-header">Campos obligatorios (*)</h5>
                                                 <div class="card-body">
                                                     <form action="#" id="basicform" data-parsley-validate="">
                                                         <div class="form-group">
                                                             <label for="">Fecha*</label>
-                                                            <input id="" type="date" name="fecha" data-parsley-trigger="change" required="" placeholder="dd-mm-yyyy" autocomplete="off" class="form-control">
+                                                            <input id="" type="date" id="fecha" data-parsley-trigger="change" required="" placeholder="dd-mm-yyyy" autocomplete="off" class="form-control">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="">Emisor*</label>
-                                                            <input id="" type="text" name="emisor" data-parsley-trigger="change" required="" placeholder="Enter payer name" autocomplete="off" class="form-control">
+                                                            <input id="" type="text" id="emisor" data-parsley-trigger="change" required="" placeholder="Enter payer name" autocomplete="off" class="form-control">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="">Receptor*</label>
-                                                            <input id="" type="text" name="receptor" data-parsley-trigger="change" required="" placeholder="Enter receiver name" autocomplete="off" class="form-control">
+                                                            <input id="" type="text" id="receptor" data-parsley-trigger="change" required="" placeholder="Enter receiver name" autocomplete="off" class="form-control">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="">Cantidad*</label>
-                                                            <input type="text" class="form-control currency-inputmask" name="cantidad" id="currency-mask" im-insert="true">
+                                                            <input type="text" class="form-control currency-inputmask" id="cantidad" id="currency-mask" im-insert="true">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="">Motivo*</label>
-                                                            <input id="" type="text" required="" name="motivo" placeholder="Enter subject" class="form-control">
+                                                            <input id="" type="text" required="" id="motivo" placeholder="Enter subject" class="form-control">
                                                         </div><br>
                                                         <div class="row">
                                                             <div class="col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
@@ -168,8 +169,8 @@
                                                             </div>
                                                             <div class="col-sm-6 pl-0">
                                                                 <p class="text-right">
-                                                                    <button type="submit" class="btn btn-space btn-primary">Guardar</button>
-                                                                    <button class="btn btn-space btn-secondary">Cancelar</button>
+                                                                    <button type="submit" id="btn-reg-pay" class="btn btn-space btn-primary">Guardar</button>
+                                                                    <button type="reset" class="btn btn-space btn-secondary">Cancelar</button>
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -188,7 +189,11 @@
                                             <!-- ============================================================== -->
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <div class="card">
-                                                    <h3 class="card-header">Resultados</h3>
+                                                    <h3 class="card-header">Resultados</h3> 
+                                                    <form action="#">
+                                                        <input type="text" id="txt-pago">
+                                                        <button type="submit" id="btn-buscar-pago">Buscar</button>
+                                                    </form>
                                                     <div class="card-body">
                                                         <div class="table-responsive">
                                                             <table class="table table-striped table-bordered first">
@@ -389,6 +394,7 @@
             $(".currency-inputmask").inputmask("$9999999")
     });
     </script>
+    <script src="../assets/js/payment_register.js"></script>
 </body>
  
 </html>

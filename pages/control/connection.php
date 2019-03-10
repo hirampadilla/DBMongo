@@ -8,6 +8,7 @@
         private $db;
         private $usuarios;
         private $persona;
+        private $pagos;
 
         // private $collection;
         public function __construct(){
@@ -15,6 +16,7 @@
             $this->db = $this->connection->proy_final;
             $this->usuarios= $this->db->usuarios; 
             $this->persona= $this->db->persona; 
+            $this->pagos=$this->bd->pagos;
             // echo "Valores encontrados: \n<br>";
             // foreach ($result as $entry) {
             // echo "<strong>Username: </strong>".$entry["name"], ': ', "<strong>pass:</strong>".$entry['pass'],"\n <br>";
@@ -25,6 +27,9 @@
         }
         public function getPersonas(){
             return $this->personas;
+        }
+        public function getPagos(){
+            return $this->pagos;
         }
         public function getConnection(){
             return $this->connection;
