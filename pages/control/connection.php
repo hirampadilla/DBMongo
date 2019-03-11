@@ -23,7 +23,7 @@
             return $this->usuarios;
         }
         public function regex($regex){
-            return new \MongoDB\BSON\Regex('^'.$regex, 'i');
+            return new \MongoDB\BSON\Regex($regex, 'i');
         }
         public function getPersonas(){
             return $this->personas;

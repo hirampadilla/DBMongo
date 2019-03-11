@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!doctype html>
 <html lang="en">
  
@@ -105,7 +108,7 @@
                                         <!-- ============================================================== -->
                                     </div>
                                     <div class="tab-pane fade" id="profile-justify" role="tabpanel" aria-labelledby="profile-tab-justify">
-                                        <div class="row">
+                                        <div  class="row">
                                             <!-- ============================================================== -->
                                             <!-- basic table  -->
                                             <!-- ============================================================== -->
@@ -114,8 +117,8 @@
                                                     <h3 class="card-header">Buscar: <input type="text" id="search" class="form-control col-5" placeholder="Escribe el nombre del Usuario"></h3>
                                                     <h3 class="card-header">Resultados</h3>
                                                     <div class="card-body">
-                            <!-----------Aqui es onde hay que moificar---------->
-                                                        <div class="table-responsive">
+                        
+                                                        <div id="table-div" class="table-responsive">
                                                        
                                                             <table class="table table-striped table-bordered first">
                                                              
@@ -131,8 +134,8 @@
                                                                 </tbody>
                                                                 <tfoot>
                                                                     <tr>
-                                                                        <th>Nombres</th>
-                                                                        <th>Apellidos</th>
+                                                                        <th>Nombre de Usuario</th>
+                                                                        <th>Privilegio</th>
                                                                         <th></th>
                                                                     </tr>
                                                                 </tfoot>
@@ -254,11 +257,11 @@
                 url: "control/us_table.php",
                 data: {search: $("#search").val()},
                 success: function (response) {
-                    $("#t-body").html(response);
+                    $("#table-div").html(response);
                 }
             });
         });
-
+       
 </script>
 </body>
  

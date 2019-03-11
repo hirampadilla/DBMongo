@@ -24,7 +24,7 @@
                 
             }
             if(is_null($result))
-                return "No existen usuarios";
+                return "No se encontraron usuarios";
             else
                 return $result;
         }
