@@ -88,6 +88,7 @@
                     },
                     success: function (response) {
                       $("#modal-delete-status").html(response);
+                      location.reload();
                     }
                   });
               });

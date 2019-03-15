@@ -124,8 +124,6 @@
                                                              
                                                             <thead>    
                                                             <tr>
-                                                                        <th>Nombre de Usuario</th>
-                                                                        <th>Privilegio</th>
                                                                         <th></th>
                                                                     </tr>
                                                                 </thead>
@@ -134,8 +132,6 @@
                                                                 </tbody>
                                                                 <tfoot>
                                                                     <tr>
-                                                                        <th>Nombre de Usuario</th>
-                                                                        <th>Privilegio</th>
                                                                         <th></th>
                                                                     </tr>
                                                                 </tfoot>
