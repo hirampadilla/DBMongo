@@ -68,7 +68,7 @@
             $collectionUsers = $con->getUsuarios();
             try {
 
-                $collectionUsers->updateOne(
+                $collectionUsers->replaceOne(
                     ["username.name" => $Oldusername],
                     [
                         "username"=>["name"=>$NewJson["name"]],

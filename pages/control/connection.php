@@ -16,7 +16,7 @@
             $this->db = $this->connection->proy_final;
             $this->usuarios= $this->db->usuarios; 
             $this->persona= $this->db->persona; 
-            $this->pagos=$this->bd->pagos;
+            $this->pagos=$this->db->pagos;
             // echo "Valores encontrados: \n<br>";
             // foreach ($result as $entry) {
             // echo "<strong>Username: </strong>".$entry["name"], ': ', "<strong>pass:</strong>".$entry['pass'],"\n <br>";
