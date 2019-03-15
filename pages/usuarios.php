@@ -1,5 +1,12 @@
 <?php 
-    session_start();
+   session_start();
+   if(!isset($_SESSION['username']))
+       echo '<script>window.location.href="../pages/login.html";</script>';
+    if(!$_SESSION['privilage'])
+           echo '<script>
+            alert("No tienes permisos para entrar a este lugar.");
+           window.location.href="../index.php";</script>';
+     
 ?>
 <!doctype html>
 <html lang="en">
