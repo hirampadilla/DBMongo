@@ -11,13 +11,13 @@
                     <ul class="navbar-nav ml-auto navbar-right-top">
                                 
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/goku.ico" alt="" class="user-avatar-md rounded-circle"></a>
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/assets/images/goku.ico" alt="" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name"><?php echo $_SESSION['username']?> </h5>
                                     <span class="status"></span><span class="ml-2">Disponible</span>
                                 </div>
-                                <a class="dropdown-item" href="pages/control/logout.php"><i class="fas fa-power-off mr-2"></i>Cerrar sesi&oacute;n</a>
+                                <a class="dropdown-item" href="/pages/control/logout.php"><i class="fas fa-power-off mr-2"></i>Cerrar sesi&oacute;n</a>
                             </div>
                         </li>
                     </ul>
@@ -51,18 +51,18 @@
                                 <div id="submenu-4" class="collapse submenu">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/employees.html">Empleados</a>
+                                            <a class="nav-link" href="/pages/employees.html">Empleados</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/projects.html">Proyectos</a>
+                                            <a class="nav-link" href="/pages/projects.php">Proyectos</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/payments.html">Pagos</a>
+                                            <a class="nav-link" href="/pages/payments.html">Pagos</a>
                                         </li>
                                         <?php
                                             if($_SESSION['privilage'])
                                             echo '<li class="nav-item">
-                                                    <a class="nav-link" href="pages/usuarios.php">Usuarios</a>
+                                                    <a class="nav-link" href="/pages/usuarios.php">Usuarios</a>
                                                 </li>';
                                         ?>
                                     </ul>
