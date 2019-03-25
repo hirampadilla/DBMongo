@@ -1,3 +1,8 @@
+<?php 
+   session_start();
+   if(!isset($_SESSION['username']))
+       echo '<script>window.location.href="/pages/login.html";</script>';
+?>
 <!doctype html>
 <html lang="en">
  

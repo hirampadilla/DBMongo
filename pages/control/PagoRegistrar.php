@@ -9,7 +9,7 @@
 
     $pay = new Payment();
 
-    if( $user->setPayment($fecha,$emisor,$receptor,$cantidad,$motivo))
+    if( $pay->setPayment($fecha,$emisor,$receptor,$cantidad,$motivo))
         echo "<div class='alert alert-success'> <strong>Pago Registrado Exitosamente</strong></div>";
     else
         echo "<div class='alert alert-warning'> El <strong>pago no se ha registrado</strong></div>";

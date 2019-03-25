@@ -34,10 +34,10 @@
             ];
             return $this->register($json);
         }        
-        public function findPayment($fecha,$emidor,$receptor,$cantidad,$motivo){
+        public function findPayment($json){
             $con = new Conexion();
             $collectionPayments = $con->getPagos();
-            $result=$collectionPayments->find($fecha,$emidor,$receptor,$cantidad,$motivo);
+            $result=$collectionPayments::find($json);
             return $result;
         }
         public function findPaymentByID($ID){
