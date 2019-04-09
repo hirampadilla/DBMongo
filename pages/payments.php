@@ -119,150 +119,24 @@
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <div class="card">
                                                     <h3 class="card-header">Resultados</h3> 
-                                                    <form action="#">
-                                                        <input type="text" id="txt-pago">
-                                                        <button type="submit" id="btn-buscar-pago">Buscar</button>
-                                                    </form>
+                                                        <input type="text" id="txt-pago" class="form-control">
+                                                        <button type="submit" class="btn btn-succes"id="btn-buscar-pago">Buscar Pagos</button>
+                                                    
                                                     <div class="card-body">
-                                                        <div class="table-responsive">
+                                                        <div id="search-status"></div>
+                                                        <div id="table-div" class="table-responsive">
                                                             <table class="table table-striped table-bordered first">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Folio</th>
-                                                                        <th>Fecha</th>
-                                                                        <th>Emisor</th>
-                                                                        <th>Receptor</th>
-                                                                        <th>Cantidad</th>
-                                                                        <th>Motivo</th>
-                                                                    </tr>
+                                                            <thead>    
+                                                                <tr>
+                                                                    <th></th>
+                                                                </tr>
                                                                 </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>Tiger Nixon</td>
-                                                                        <td>System Architect</td>
-                                                                        <td>Edinburgh</td>
-                                                                        <td>61</td>
-                                                                        <td>2009/08/19</td>
-                                                                        <td>
-                                                                            <button class="btn btn-sm btn-success">Editar</button>
-                                                                            <button class="btn btn-sm btn-danger">
-                                                                                <i class="far fa-trash-alt"></i>
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Garrett Winters</td>
-                                                                        <td>Accountant</td>
-                                                                        <td>Tokyo</td>
-                                                                        <td>63</td>
-                                                                        <td>2009/08/19</td>
-                                                                        <td>
-                                                                            <button class="btn btn-sm btn-success">Editar</button>
-                                                                            <button class="btn btn-sm btn-danger">
-                                                                                <i class="far fa-trash-alt"></i>
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Ashton Cox</td>
-                                                                        <td>Junior Technical Author</td>
-                                                                        <td>San Francisco</td>
-                                                                        <td>66</td>
-                                                                        <td>2009/08/19</td>
-                                                                        <td>
-                                                                            <button class="btn btn-sm btn-success">Editar</button>
-                                                                            <button class="btn btn-sm btn-danger">
-                                                                                <i class="far fa-trash-alt"></i>
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Sakura Yamamoto</td>
-                                                                        <td>Support Engineer</td>
-                                                                        <td>Tokyo</td>
-                                                                        <td>37</td>
-                                                                        <td>2009/08/19</td>
-                                                                        <td>
-                                                                            <button class="btn btn-sm btn-success">Editar</button>
-                                                                            <button class="btn btn-sm btn-danger">
-                                                                                <i class="far fa-trash-alt"></i>
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Thor Walton</td>
-                                                                        <td>Developer</td>
-                                                                        <td>New York</td>
-                                                                        <td>61</td>
-                                                                        <td>2013/08/11</td>
-                                                                        <td>
-                                                                            <button class="btn btn-sm btn-success">Editar</button>
-                                                                            <button class="btn btn-sm btn-danger">
-                                                                                <i class="far fa-trash-alt"></i>
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Finn Camacho</td>
-                                                                        <td>Support Engineer</td>
-                                                                        <td>San Francisco</td>
-                                                                        <td>47</td>
-                                                                        <td>2009/07/07</td>
-                                                                        <td>
-                                                                            <button class="btn btn-sm btn-success">Editar</button>
-                                                                            <button class="btn btn-sm btn-danger">
-                                                                                <i class="far fa-trash-alt"></i>
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Serge Baldwin</td>
-                                                                        <td>Data Coordinator</td>
-                                                                        <td>Singapore</td>
-                                                                        <td>64</td>
-                                                                        <td>2012/04/09</td>
-                                                                        <td>
-                                                                            <button class="btn btn-sm btn-success">Editar</button>
-                                                                            <button class="btn btn-sm btn-danger">
-                                                                                <i class="far fa-trash-alt"></i>
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Zenaida Frank</td>
-                                                                        <td>Software Engineer</td>
-                                                                        <td>New York</td>
-                                                                        <td>63</td>
-                                                                        <td>2010/01/04</td>
-                                                                        <td>
-                                                                            <button class="btn btn-sm btn-success">Editar</button>
-                                                                            <button class="btn btn-sm btn-danger">
-                                                                                <i class="far fa-trash-alt"></i>
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Donna Snider</td>
-                                                                        <td>Customer Support</td>
-                                                                        <td>New York</td>
-                                                                        <td>27</td>
-                                                                        <td>2011/01/25</td>
-                                                                        <td>
-                                                                            <button class="btn btn-sm btn-success">Editar</button>
-                                                                            <button class="btn btn-sm btn-danger">
-                                                                                <i class="far fa-trash-alt"></i>
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
+                                                                <tbody id="t-body">
+                                                                    <tr><td><h3>Iniciar Busqueda</h3>    </td></tr>
                                                                 </tbody>
                                                                 <tfoot>
                                                                     <tr>
-                                                                        <th>Folio</th>
-                                                                        <th>Fecha</th>
-                                                                        <th>Emisor</th>
-                                                                        <th>Receptor</th>
-                                                                        <th>Cantidad</th>
-                                                                        <th>Motivo</th>
+                                                                        <th></th>
                                                                     </tr>
                                                                 </tfoot>
                                                             </table>
@@ -346,8 +220,23 @@
             });
             return false;
         });
-});
+        $("#btn-buscar-pago").click(()=>{
+            $.ajax({
+                type: "post",
+                url: "control/payment_table..php",
+                data: {search: $("#txt-pago").val()},
+                beforeSend: ()=>{
+                    $("#search-status").html('<div class="alert alert-primary">Buscando ...</div>');
+                },
+                success: function (response) {
+                    $("#search-status").html('<div></div>');
+                    $("#table-div").html(response);  
+                }
+            });
+            return false;
+        });
+    });
+
     </script>
 </body>
- 
 </html>

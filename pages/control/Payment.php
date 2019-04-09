@@ -8,6 +8,20 @@
         protected $cantidad;
         protected $motivo;
 
+        public function findPattern($pattern){
+            $con = new Conexion();
+            $collectionPayment = $con->getPagos();
+            $regex = $con->regex($pattern);
+            $result=$collectionPayment->find(   array(
+                '$or' => array(
+                    ["receptor" => $regex],
+                    ["emisor" => $regex],
+                    ["cantidad" => $regex],
+                )
+            ));
+            return $result;
+        }
+
         private function register($json){
             $con = new Conexion();
             $collectionPayments = $con->getPagos();
@@ -70,13 +84,19 @@
                 return false;
             }
         }
-        public function destroy($username){
+        public function destroy($_id){
             $con = new Conexion();
             $collectionPayments = $con->getPagos();
             try {
+                $pay = $collectionPayment::findOne(["_id"=>$_id]);
                 $collectionPayments->deleteOne([
-                    "username.name"=> $username
+                    "fecha" => $pay->fecha ,
+                    "emisor"=>$pay->emisor ,
+                    "receptor"=>$pay->receptor,
+                    "cantidad"=>$pay->cantidad,
+                    "motivo"=> $pay->motivo
                 ]);
+
                 return true;
             } catch (\Throwable $th) {
                 //throw $th;

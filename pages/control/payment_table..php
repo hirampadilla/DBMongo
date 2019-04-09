@@ -14,8 +14,12 @@
                          
                         <thead>    
                         <tr>
-                                    <th>Nombre de Usuario</th>
-                                    <th>Privilegio</th>
+                                    <th>Folio</th>
+                                    <th>Fecha</th>
+                                    <th>Emisor</th>
+                                    <th>Receptor</th>
+                                    <th>Cantidad</th>
+                                    <th>Motivo</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -23,40 +27,39 @@
     $downtable='</tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Nombre de Usuario</th>
-                                    <th>Privilegio</th>
-                                    <th></th>
-                                </tr>
+                                <th>Folio</th>
+                                <th>Fecha</th>
+                                <th>Emisor</th>
+                                <th>Receptor</th>
+                                <th>Cantidad</th>
+                                <th>Motivo</th>
+                                <th></th>
+                            </tr>
                             </tfoot>
                         </table>';
     $Alltable=$altable;
 
-    foreach($response as $us){
-        
-        $admin="Basico";
-        $options='<option value=false>Basico</option>
-                <option value=true>Administrador</option>';
-        if($us->privilage === true) 
-          {  $admin="Administrador";
-            $options='<option value=true>Administrador</option>
-              <option value=false>Basico</option>';
-          }
-            $result .= '<tr>
-            <td>'.$us->username->name.'</td>
-            <td>'.$admin.'</td>
+    foreach($response as $pay){
+        $result .= '<tr>
+            <td>'.$pay->_id.'</td>
+            <td>'.$pay->fecha.'</td>
+            <td>'.$pay->emisor.'</td>
+            <td>'.$pay->receptor.'</td>
+            <td>'.$pay->cantidad.'</td>
+            <td>'.$pay->motivo.'</td>
             <td>
-                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-'.$us->username->name.'-edit">Editar</button>
-                <button data-toggle="modal" data-target="#modal-delete-'.$us->username->name.'"class="btn btn-sm btn-danger">
+                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-'.$pay->_id.'-edit">Editar</button>
+                <button data-toggle="modal" data-target="#modal-delete-'.$pay->_id.'"class="btn btn-sm btn-danger">
                     <i class="far fa-trash-alt"></i>
                 </button>
             </td>
             </tr>';
             $modalDelete.='<!-- Modal -->
-            <div class="modal fade" id="modal-delete-'.$us->username->name.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="modal-delete-'.$pay->_id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Esta seguro de querer ELIMINAR al usuario: '.$us->username->name.'?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Esta seguro de querer ELIMINAR el pago con folio: '.$pay->_id.'?</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -68,93 +71,93 @@
                   </div>
                   <div class="modal-footer">
                     <button  type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
-                    <button id="btn-delete-'.$us->username->name.'" type="button" class="btn btn-warning">ELIMINAR</button>
+                    <button id="btn-delete-'.$pay->_id.'" type="button" class="btn btn-warning">ELIMINAR</button>
                   </div>
                 </div>
               </div>
             </div><script>
             $("#modal").on("shown.bs.modal", function () {
-                $("#modal-delete-'.$us->username->name.'").trigger("focus");
+                $("#modal-delete-'.$pay->_id.'").trigger("focus");
               });
 
-              $("#btn-delete-'.$us->username->name.'").click(()=>{
-                alert("Entrando a del evento");
+              $("#btn-delete-'.$pay->_id.'").click(()=>{
                   $.ajax({
                     type: "post",
-                    url: "control/deleteUser.php",
-                    data: { username: "'.$us->username->name.'"},
+                    url: "control/PagoEliminar.php",
+                    data: { _id: "'.$pay->_id.'"},
                     beforeSend: ()=>{
                       $("#modal-delete-status").html("'."<div class='alert alert-light'>Excecute Deleting</div>".'");
                     },
                     success: function (response) {
                       $("#modal-delete-status").html(response);
-                      location.reload();
+                     // location.reload();
                     }
                   });
+                  return false;
               });
             </script>';
 
             $modalEdit.='<!-- Modal -->
-            <div class="modal fade" id="modal-'.$us->username->name.'-edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="modal-'.$pay->_id.'-edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar Usuario: '.$us->username->name.'</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Usuario: '.$pay->_id.'</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
                     <div class="form-control">
-                    <div id="modal-status-'.$us->username->name.'"></div>
-                    <h6 class="card-header">Nombre de Usuario: <input required id="input-username-'.$us->username->name.'"type="text" class="form-control" value="'.$us->username->name.'"></h6>
-                    <h6 class="card-header">Cambiar Contraseña: <input required id="input-pass-'.$us->username->name.'" type="password" class="form-control" ></h6>
-                    <h6 class="card-header">Cambiar Privilegio: <select id="input-priv-'.$us->username->name.'" class="form-control" >'.$options.'</select></h6>
+                    <div id="modal-status-'.$pay->_id.'"></div>
+                    <h6 class="card-header">Nombre de Usuario: <input required id="input-username-'.$pay->_id.'"type="text" class="form-control" value="'.$pay->_id.'"></h6>
+                    <h6 class="card-header">Cambiar Contraseña: <input required id="input-pass-'.$pay->_id.'" type="password" class="form-control" ></h6>
+                    <h6 class="card-header">Cambiar Privilegio: <select id="input-priv-'.$pay->_id.'" class="form-control" ></select></h6>
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <button id="btn-cancel-'.$us->username->name.'" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button id="btn-update-'.$us->username->name.'" type="button" class="btn btn-primary" disabled >Guardar Cambios</button>
+                    <button id="btn-cancel-'.$pay->_id.'" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button id="btn-update-'.$pay->_id.'" type="button" class="btn btn-primary" disabled >Guardar Cambios</button>
                   </div>
                 </div>
               </div>
             </div><script>
             $("#modal").on("shown.bs.modal", function () {
-                $("#modal-'.$us->username->name.'-edit").trigger("focus")
+                $("#modal-'.$pay->_id.'-edit").trigger("focus")
               });
-              $("#input-username-'.$us->username->name.'").change(()=>{
-                $("#btn-update-'.$us->username->name.'").removeAttr("disabled");
+              $("#input-username-'.$pay->_id.'").change(()=>{
+                $("#btn-update-'.$pay->_id.'").removeAttr("disabled");
               });
-              $("#input-pass-'.$us->username->name.'").change(()=>{
-                $("#btn-update-'.$us->username->name.'").removeAttr("disabled");
+              $("#input-pass-'.$pay->_id.'").change(()=>{
+                $("#btn-update-'.$pay->_id.'").removeAttr("disabled");
               });
-              $("#btn-update-'.$us->username->name.'").click(()=>{ 
-                priv= ($("#input-priv-'.$us->username->name.'").val() === "true");
+              $("#btn-update-'.$pay->_id.'").click(()=>{ 
+                priv= ($("#input-priv-'.$pay->_id.'").val() === "true");
                 
                 $.ajax({
                   type: "post",
                   url: "control/updateUser.php",
                   data: {
-                    oldname: "'.$us->username->name.'",
-                    username: $("#input-username-'.$us->username->name.'").val() ,
-                    pass: $("#input-pass-'.$us->username->name.'").val() ,
+                    oldname: "'.$pay->_id.'",
+                    username: $("#input-username-'.$pay->_id.'").val() ,
+                    pass: $("#input-pass-'.$pay->_id.'").val() ,
                     priv: priv
                   },
                   beforeSend : ()=>{
-                  $("#modal-status-'.$us->username->name.'")
+                  $("#modal-status-'.$pay->_id.'")
                     .html("<div class=\"alert alert-light\">Realizando Cambios</div>");
               
                   },
                   success: function (response) {
-                  $("#modal-status-'.$us->username->name.'")
+                  $("#modal-status-'.$pay->_id.'")
                     .html(response);
                     location.reload();
                   }
                 });
               });
-              $("#btn-cancel-'.$us->username->name.'").click(()=>{
-                $("#input-username-'.$us->username->name.'").val("'.$us->username->name.'");
-                $("#btn-update-'.$us->username->name.'").attr("disabled","disabled");
+              $("#btn-cancel-'.$pay->_id.'").click(()=>{
+                $("#input-username-'.$pay->_id.'").val("'.$pay->_id.'");
+                $("#btn-update-'.$pay->_id.'").attr("disabled","disabled");
               });
             </script>';
 
