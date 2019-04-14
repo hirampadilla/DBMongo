@@ -90,7 +90,7 @@
                     },
                     success: function (response) {
                       $("#modal-delete-status").html(response);
-                     // location.reload();
+                      location.reload();
                     }
                   });
                   return false;
@@ -102,7 +102,7 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar Usuario: '.$pay->_id.'</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Registro: '.$pay->_id.'</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -110,10 +110,12 @@
                   <div class="modal-body">
                     <div class="form-control">
                     <div id="modal-status-'.$pay->_id.'"></div>
-                    <h6 class="card-header">Nombre de Usuario: <input required id="input-username-'.$pay->_id.'"type="text" class="form-control" value="'.$pay->_id.'"></h6>
-                    <h6 class="card-header">Cambiar Contraseña: <input required id="input-pass-'.$pay->_id.'" type="password" class="form-control" ></h6>
-                    <h6 class="card-header">Cambiar Privilegio: <select id="input-priv-'.$pay->_id.'" class="form-control" ></select></h6>
-                    </div>
+                    <h6 class="card-header">Fecha: <input required id="input-fecha-'.$pay->_id.'"type="date" class="form-control" value="'.$pay->fecha.'"></h6>
+                    <h6 class="card-header">Emisor: <input required id="input-emisor-'.$pay->_id.'" type="text" class="form-control"value="'.$pay->emisor.'"></h6>
+                    <h6 class="card-header">Receptor: <input required id="input-receptor-'.$pay->_id.'" type="text" class="form-control" value="'.$pay->receptor.'"></h6>
+                    <h6 class="card-header">Cantidad: <input required id="input-cantidad-'.$pay->_id.'" type="number" class="form-control"value="'.$pay->cantidad.'" ></h6>
+                    <h6 class="card-header">Motivo: <input required id="input-motivo-'.$pay->_id.'" type="text" class="form-control" value="'.$pay->motivo.'"></h6>
+                         </div>
                   </div>
                   <div class="modal-footer">
                     <button id="btn-cancel-'.$pay->_id.'" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -125,43 +127,51 @@
             $("#modal").on("shown.bs.modal", function () {
                 $("#modal-'.$pay->_id.'-edit").trigger("focus")
               });
-              $("#input-username-'.$pay->_id.'").change(()=>{
+              $("#input-fecha-'.$pay->_id.'").change(()=>{
                 $("#btn-update-'.$pay->_id.'").removeAttr("disabled");
               });
-              $("#input-pass-'.$pay->_id.'").change(()=>{
+              $("#input-emisor-'.$pay->_id.'").change(()=>{
                 $("#btn-update-'.$pay->_id.'").removeAttr("disabled");
               });
-              $("#btn-update-'.$pay->_id.'").click(()=>{ 
-                priv= ($("#input-priv-'.$pay->_id.'").val() === "true");
-                
+              $("#input-receptor-'.$pay->_id.'").change(()=>{
+                $("#btn-update-'.$pay->_id.'").removeAttr("disabled");
+              });
+              $("#input-cantidad-'.$pay->_id.'").change(()=>{
+                $("#btn-update-'.$pay->_id.'").removeAttr("disabled");
+              });
+              $("#input-motivo-'.$pay->_id.'").change(()=>{
+                $("#btn-update-'.$pay->_id.'").removeAttr("disabled");
+              });
+              $("#btn-update-'.$pay->_id.'").click(()=>{    
                 $.ajax({
                   type: "post",
-                  url: "control/updateUser.php",
+                  url: "control/PagoEditar.php",
                   data: {
-                    oldname: "'.$pay->_id.'",
-                    username: $("#input-username-'.$pay->_id.'").val() ,
-                    pass: $("#input-pass-'.$pay->_id.'").val() ,
-                    priv: priv
+                    fecha: $("#input-fecha-'.$pay->_id.'").val(),
+                    emisor: $("#input-emisor-'.$pay->_id.'").val(),
+                    receptor: $("#input-receptor-'.$pay->_id.'").val(),
+                    cantidad:$("#input-cantidad-'.$pay->_id.'").val(),
+                    motivo:$("#input-motivo-'.$pay->_id.'").val(),
+                    id: "'.$pay->_id.'"
                   },
                   beforeSend : ()=>{
-                  $("#modal-status-'.$pay->_id.'")
-                    .html("<div class=\"alert alert-light\">Realizando Cambios</div>");
+                  $("#modal-status-'.$pay->_id.'").html("<div class=\"alert alert-light\">Realizando Cambios</div>");
               
                   },
                   success: function (response) {
                   $("#modal-status-'.$pay->_id.'")
                     .html(response);
-                    location.reload();
-                  }
+                    location.reload();                  }
                 });
               });
               $("#btn-cancel-'.$pay->_id.'").click(()=>{
-                $("#input-username-'.$pay->_id.'").val("'.$pay->_id.'");
+                $("#input-payment-'.$pay->_id.'").val("'.$pay->_id.'");
                 $("#btn-update-'.$pay->_id.'").attr("disabled","disabled");
               });
             </script>';
 
     }
+    
     if(!is_null($result)){
         $Alltable=$altable.$result.$downtable.$modalEdit.$modalDelete;
         echo $Alltable;
@@ -171,3 +181,4 @@
         echo $Alltable;
     }
 ?>
+              

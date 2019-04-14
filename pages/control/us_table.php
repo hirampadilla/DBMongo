@@ -78,7 +78,6 @@
               });
 
               $("#btn-delete-'.$us->username->name.'").click(()=>{
-                alert("Entrando a del evento");
                   $.ajax({
                     type: "post",
                     url: "control/deleteUser.php",

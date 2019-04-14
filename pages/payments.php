@@ -1,3 +1,13 @@
+<?php 
+   session_start();
+   if(!isset($_SESSION['username']))
+       echo '<script>window.location.href="../pages/login.html";</script>';
+    if(!$_SESSION['privilage'])
+           echo '<script>
+            alert("No tienes permisos para entrar a este lugar.");
+           window.location.href="../index.php";</script>';
+     
+?>
 <!doctype html>
 <html lang="en">
  
@@ -71,26 +81,26 @@
                                                 <div id="status"></div>
                                                 <h5 class="card-header">Campos obligatorios (*)</h5>
                                                 <div class="card-body">
-                                                    <form action="#" id="basicform" data-parsley-validate="">
+                                                    <form id="basicform" >
                                                         <div class="form-group">
                                                             <label for="">Fecha*</label>
-                                                            <input id="r_fecha" type="date" id="fecha" data-parsley-trigger="change" required="" placeholder="dd-mm-yyyy" autocomplete="off" class="form-control">
+                                                            <input id="r_fecha" required type="date" id="fecha" data-parsley-trigger="change" placeholder="dd-mm-yyyy" autocomplete="off" class="form-control">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="">Emisor*</label>
-                                                            <input id="r_emisor" type="text" id="emisor" data-parsley-trigger="change" required="" placeholder="Enter payer name" autocomplete="off" class="form-control">
+                                                            <input id="r_emisor" required type="text" id="emisor" data-parsley-trigger="change" placeholder="Enter payer name" autocomplete="off" class="form-control">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="">Receptor*</label>
-                                                            <input id="r_receptor" type="text" id="receptor" data-parsley-trigger="change" required="" placeholder="Enter receiver name" autocomplete="off" class="form-control">
+                                                            <input id="r_receptor" required type="text" id="receptor" data-parsley-trigger="change" placeholder="Enter receiver name" autocomplete="off" class="form-control">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="">Cantidad*</label>
-                                                            <input id="r_cantidad"type="text" class="form-control currency-inputmask" id="cantidad" id="currency-mask" im-insert="true">
+                                                            <input id="r_cantidad" required type="number" class="form-control" min="0.01" max="9999999.00" im-insert="true">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="">Motivo*</label>
-                                                            <input id="r_motivo" type="text" required="" id="motivo" placeholder="Enter subject" class="form-control">
+                                                            <input id="r_motivo" required type="text" id="motivo" placeholder="Enter subject" class="form-control">
                                                         </div><br>
                                                         <div class="row">
                                                             <div class="col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
